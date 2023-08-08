@@ -36,7 +36,9 @@ if menu == 'Smartphone Data Overview':
     
     
     bar_chart = px.bar(df, x='brand_name', y='price',color='rating')
-    st.plotly_chart(bar_chart)                     
+    st.plotly_chart(bar_chart)
+    st.write("We see a cool bar chart that compares smartphone brands based on their prices and colors them according to their ratings. Looks like higher-rated phones are generally more expensive.")
+    
     
     st.title('Processor Brand vs Price')
     
@@ -44,8 +46,7 @@ if menu == 'Smartphone Data Overview':
     sns.barplot(data=df,x='processor_brand',y='price',estimator=np.median,ax=ax1)
     plt.xticks(rotation='vertical')
     st.pyplot(fig1)
-    st.write("We see a cool bar chart that compares smartphone brands based on their prices and colors them according to their ratings. Looks like higher-rated phones are generally more expensive.")
-    
+  
     st.title('Processor Cores vs Price')
     
     fig2,ax2 = plt.subplots()
