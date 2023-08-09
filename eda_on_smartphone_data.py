@@ -21,8 +21,8 @@ menu = st.sidebar.selectbox('Select One',['Smartphone Data Overview','Top 10 Sma
 if menu == 'Smartphone Data Overview':
     st.title('Smartphone Data Overview')
    
-    st.dataframe(df.head(10))  
-    st.write('It shows the first 10 rows of the smartphone dataset')
+    st.dataframe(df.head())  
+    st.write('It shows the first 5 rows of the smartphone dataset')
              
     st.title('Smartphone Data Statistical Description')
     
