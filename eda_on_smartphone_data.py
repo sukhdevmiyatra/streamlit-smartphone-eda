@@ -15,14 +15,14 @@ st.set_page_config(page_title='Smartphone Data Analysis')
 
 st.sidebar.title('Smartphone Data Analysis Menu')
 
-menu = st.sidebar.selectbox('Select One',['Smartphone Data Overview','Top 10 Smartphone Brands By Value Count','Rating Overview','Processor Overview','Storage And Ram Overview','Operating System Overview','Camera Overview','Extra Features'])
+menu = st.sidebar.selectbox('Select One',['Smartphone Data Overview','In Depth Price To Performance Analysis','Top 10 Smartphone Brands By Value Count','Rating Overview','Processor Overview','Storage And Ram Overview','Operating System Overview','Camera Overview','Extra Features'])
 
 
 if menu == 'Smartphone Data Overview':
     st.title('Smartphone Data Overview')
    
-    st.dataframe(df.head())  
-    st.write('It shows the first 5 rows of the smartphone dataset')
+    st.dataframe(df.head(10))  
+    st.write('It shows the first 10 rows of the smartphone dataset')
              
     st.title('Smartphone Data Statistical Description')
     
@@ -30,15 +30,17 @@ if menu == 'Smartphone Data Overview':
 
     st.write('It shows the some basic stats like the average price, highest, lowest, etc')
     
+    
+    
+if menu == 'In Depth Price To Performance Analysis': 
+    
     st.title('In Depth Price To Performance Analysis')
     
     st.write('Smartphone Brands Vs Price Via Rating')    
     
     
     bar_chart = px.bar(df, x='brand_name', y='price',color='rating')
-    st.plotly_chart(bar_chart)
-    st.write("We see a cool bar chart that compares smartphone brands based on their prices and colors them according to their ratings. Looks like higher-rated phones are generally more expensive.")
-    
+    st.plotly_chart(bar_chart)                     
     
     st.title('Processor Brand vs Price')
     
@@ -46,7 +48,8 @@ if menu == 'Smartphone Data Overview':
     sns.barplot(data=df,x='processor_brand',y='price',estimator=np.median,ax=ax1)
     plt.xticks(rotation='vertical')
     st.pyplot(fig1)
-  
+    st.write("We see a cool bar chart that compares smartphone brands based on their prices and colors them according to their ratings. Looks like higher-rated phones are generally more expensive.")
+    
     st.title('Processor Cores vs Price')
     
     fig2,ax2 = plt.subplots()
@@ -95,8 +98,7 @@ if menu == 'Smartphone Data Overview':
     st.write("- The number of cores and processor speed doesn't seem to have a big impact on the price.")
     st.write("- Phones with larger screens tend to be pricier.")
     st.write("- Some features like IR blaster, NFC, and 5G can affect the price.")
-    
-  
+     
 
 elif menu == 'Top 10 Smartphone Brands By Value Count':
     
@@ -119,7 +121,7 @@ elif menu == 'Rating Overview':
     
     st.title('Rating Price Analysis')
     st.write("A bar chart shows the relationship between phone ratings and prices. Higher-rated phones tend to be more expensive.")
-    st.plotly_chart(px.bar(df,x='rating',y='price'))   
+    st.plotly_chart(px.bar(df,x='rating',y='price',log_y=True,))   
     
     st.title('Rating Boxplot')
     st.write("There's also a box plot to see the spread and outliers in ratings.")
